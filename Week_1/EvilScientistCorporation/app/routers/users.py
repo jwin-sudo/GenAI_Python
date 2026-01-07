@@ -1,5 +1,5 @@
 # I want all user-based HTTP endpoints to be defined in this file.
-from fastapi import APIRouter # type: ignore
+from fastapi import APIRouter, HTTPException # type: ignore
 
 from app.models.user_model import UserModel
 
@@ -34,7 +34,15 @@ user_database = {
 # Create new users (POST request)
 @router.post("/")
 async def create_user(user: UserModel):
-    user_database[999] = user
+
+    # TODO: uniqueness validation 
+
+    # Give the user an auto-incremented ID 
+    user.id = len(user_database) + 1
+
+    # Store the user in the "DB"
+    user_database[user.id] = user
+
     return {
         "message": user.username + " created successfully!",
         "inserted_user": user
@@ -45,6 +53,35 @@ async def get_all_users():
     return user_database
 
 # Delete a specific user by ID (DELETE request + path variable)
+# notice how we include {path variables} in the route. the route is now /users/{some user_id}
+@router.delete("/{user_id}")
+async def delete_user(user_id: int):
+
+    # if the passed in user id exists as a key in the map, pop that User out 
+    if user_id in user_database:
+        deleted_user = user_database.pop(user_id)
+        return {
+            "message": f"User {deleted_user.username} deleted successfully!", 
+            "deleted_user": deleted_user
+        }
+    else:
+        return {
+            "error": "User ID not found - can't delete!"
+        }
 
 # Update a specific user's info by ID (PUT request + path variable)
-
+@router.put("/{user_id}")
+async def update_user(user_id: int, updated_user: UserModel):
+    #Similarly to the delete above, check if the User ID exists 
+    if user_id in user_database:
+        # update all the user fields EXCEPT the ID
+        user_database[user_id].username = updated_user.username
+        user_database[user_id].password = updated_user.password
+        user_database[user_id].email = updated_user.email
+        return {
+            "message": f"{user_database[user_id].username} updated successfully!",
+            "updated_user": user_database[user_id]
+        }
+    
+    else:
+        raise HTTPException(status_code=404, detail="User ID not found - can't update!")
