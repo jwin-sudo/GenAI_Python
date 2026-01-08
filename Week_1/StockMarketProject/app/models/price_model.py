@@ -1,20 +1,18 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class StockModel(BaseModel):
+class PriceModel(BaseModel):
     id: Optional[int] = None
     ticker: str
-    company_name: str
-    sector: str
-    founded_year: int
+    high: int
+    low: int
 
     
     
     model_config = {"from_attributes": True}
 
-class StockCreateResponse(BaseModel):
+class PriceCreateResponse(BaseModel):
     message: str
-    stock: StockModel
+    stock: PriceModel
 
     model_config = {"from_attributes": True}
-
