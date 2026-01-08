@@ -3,12 +3,20 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 
 from app.routers import users
+from app.routers import items
 
 # Set up FastAPI. We'll use this "app" variable to do FastAPI stuff.
 
 app = FastAPI()
 
+#Setting CORS (Cross Origin Resource Sharing) policy 
+origins = ["*"] # Allow all origins (not recommended for production)
+origins = ["http://localhost"] # Allow requests only from localhost 
+
+#TODO for Ben: CORS middleware
+
 # Global custom Exception Handler 
+# All Exceptions raised in the routers get handled here
 @app.exception_handler(HTTPException)
 async def custom_http_exception_handler(request, exception: HTTPException):
     return JSONResponse(
@@ -17,7 +25,10 @@ async def custom_http_exception_handler(request, exception: HTTPException):
     )
 # Import routers here
 app.include_router(users.router)
+app.include_router(items.router)
+
 # Generic sample endpoint (GET request that just returns a message)
 @app.get("/")
 async def sample_endpoint():
     return {"message": "Hello, FastAPI!"}
+
