@@ -61,5 +61,5 @@ async def subtract_item_inventory(item_id: int, amount: int):
 # Note that we set a limit default of 1, so we'll get just 1 item if no query param is included 
 @router.get("/some_items")
 async def get_some_items(limit: int = 1):
-    
+
     return list(item_database.values())[:limit]
