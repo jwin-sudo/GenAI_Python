@@ -4,6 +4,7 @@ from starlette.responses import JSONResponse
 
 from app.routers import users
 from app.routers import items
+from app.routers import chat
 
 # Set up FastAPI. We'll use this "app" variable to do FastAPI stuff.
 
@@ -26,6 +27,7 @@ async def custom_http_exception_handler(request, exception: HTTPException):
 # Import routers here
 app.include_router(users.router)
 app.include_router(items.router)
+app.include_router(chat.router)
 
 # Generic sample endpoint (GET request that just returns a message)
 @app.get("/")
