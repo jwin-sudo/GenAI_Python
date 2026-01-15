@@ -6,7 +6,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel
 
 from app.models.item_model import ItemModel
-from app.services.chain_service import get_general_chain, get_memory_chain
+from app.services.chain_service import get_general_chain, get_memory_chain, get_sequential_chain, get_bad_word_filter_chain
 
 #Typical Router setup
 router = APIRouter(
@@ -26,6 +26,8 @@ class ItemListModel(BaseModel):
 # Import the chain-creation functions from the chain service here
 general_chain = get_general_chain()
 memory_chain = get_memory_chain()
+sequential_chain = get_sequential_chain()
+transform_chain = get_bad_word_filter_chain()
 
 # Generic chatbot-esque endpoint
 @router.post("/")
@@ -117,7 +119,22 @@ async def get_item_recommendations(amount: int = 3):
 async def chat_with_memory(chat:ChatInputModel):
     # That's it! The chain will remember the last "k" interactions automatically
     # Note we use "run" instead of invoke 
-    return memory_chain.run(input=chat.input)
+    return memory_chain.invoke(input=chat.input)
+
+# USING OUR SEQUENTIAL CHAIN
+@router.post("/support-chat")
+async def customer_support_chat(chat:ChatInputModel):
+    # Another one liner - same user behavior as general chat,
+    # Just using a different chain
+    return sequential_chain.invoke(input={"input":chat.input})
+
+# USING OUR TRANSFORM CHAIN 
+@router.post("/censorted-chat")
+async def censored_chat(chat:ChatInputModel):
+
+    # Another basic one liner, just using a different chain
+    return transform_chain.invoke(input={"input":chat.input})
+
 
 # You can ignore this - I stole it from Shane for week 4 cuz I liked it
 # @tool
