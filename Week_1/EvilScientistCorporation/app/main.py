@@ -10,15 +10,8 @@ from app.routers import chat
 from app.routers import vector_ops
 
 
-# Setting up a context manager for lifespan events
-# # We'll use this to initalize our Chroma vector DB when the app starts
-# # Set up FastAPI. We'll use this "app" variable to do FastAPI stuff.
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # store the vector DB init in app state (a way to store global data in FastAPI)
-    app.state.vector_store = init_vector_store()
-    yield # pause here and run the app 
-app = FastAPI(lifespan=lifespan)
+
+app = FastAPI()
 
 #Setting CORS (Cross Origin Resource Sharing) policy 
 origins = ["*"] # Allow all origins (not recommended for production)
