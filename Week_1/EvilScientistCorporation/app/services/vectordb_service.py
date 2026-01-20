@@ -3,6 +3,8 @@ from langchain_chroma import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_core.documents import Document
 from typing import Any
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+import hashlib
 
 
 PERSIST_DIRECTORY = "app/chroma_store" # Where the DB will be stored on disk
@@ -48,6 +50,50 @@ def ingest_items(items: list[dict[str, Any]], collection:str=COLLECTION) -> int:
     # Add the documents, return the length of the ingested items 
     db_instance.add_documents(docs, ids=ids)
     return len(items)
+
+# Different ingest function for ingesting plain text (we'll need to make IDs/metadata)
+def ingest_text(text:str) -> int:
+    # Strip the string, removing whitespace from the ends
+    text = text.strip()
+    if not text:
+        return 0 # if there's nothing to ingest, end the function here and return 0
+    
+
+    # Chunk the raw text into smaller pieces for better embedding
+
+    # Using a LangChain Transformer (RecursiveCharacterTExtSplitter)
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=600, # max size of each chunk (~2 paragraphs)
+        chunk_overlap=100, # how much each chunk overlaps - 100 chars (helps retain context)
+        separators=["\n\n", "\n", " ", ""] # preferred split points
+        # (double new line, single newline, space, then any char )
+    )
+
+    # Get our chunks as a list[str] so we can iterate over them and reformat them 
+    chunks = splitter.split_text(text)
+
+    # Finally, call ingest_items() no that we have a structured object for embedding
+    items = []
+
+    # What's enumerate? Give us a (index, value) pair when iterating over the list
+    for index, chunk in enumerate(chunks):
+        # Define and attach a stable-ish ID so reingestion doesn't create duplicates 
+        content_hash = hashlib.md5()(chunk.encode("utf-8")).hexdigest()[:8]
+        chunk_id = f"chunk_{index}_{content_hash}"
+        # This^ will look like "chunk_a1b2c3d4"
+
+        # Append the chunk to the items list with ID and metadata
+        items.append({
+            "id": chunk_id,
+            "text": chunk,
+            "metadata": {
+                "chunk_index": index,
+                "source": "raw_text_ingestion" # Helps with filtering information in queries 
+            }
+        })
+    # Finally, send the new structured 
+    return ingest_items(items, collection="boss_plans")
+
 
 # Search the vector store for similar or relevant documents
 def search(query: str, k: int = 3, collection:str = COLLECTION) -> list[dict[str, Any]]:

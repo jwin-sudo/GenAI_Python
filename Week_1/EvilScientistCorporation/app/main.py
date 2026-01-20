@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from contextlib import asynccontextmanager
-from app.services.vectordb_service import init_vector_store
 
 from app.routers import users
 from app.routers import items
