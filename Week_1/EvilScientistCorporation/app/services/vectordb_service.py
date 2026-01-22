@@ -63,8 +63,8 @@ def ingest_text(text:str) -> int:
 
     # Using a LangChain Transformer (RecursiveCharacterTExtSplitter)
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=600, # max size of each chunk (~2 paragraphs)
-        chunk_overlap=100, # how much each chunk overlaps - 100 chars (helps retain context)
+        chunk_size=100, # max size of each chunk (~2 paragraphs)
+        chunk_overlap=15, # how much each chunk overlaps - 100 chars (helps retain context)
         separators=["\n\n", "\n", " ", ""] # preferred split points
         # (double new line, single newline, space, then any char )
     )
@@ -78,7 +78,7 @@ def ingest_text(text:str) -> int:
     # What's enumerate? Give us a (index, value) pair when iterating over the list
     for index, chunk in enumerate(chunks):
         # Define and attach a stable-ish ID so reingestion doesn't create duplicates 
-        content_hash = hashlib.md5()(chunk.encode("utf-8")).hexdigest()[:8]
+        content_hash = hashlib.md5(chunk.encode("utf-8")).hexdigest()[:8]
         chunk_id = f"chunk_{index}_{content_hash}"
         # This^ will look like "chunk_a1b2c3d4"
 
