@@ -5,6 +5,7 @@ from langchain_core.documents import Document
 from typing import Any
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import hashlib
+import spacy
 
 
 PERSIST_DIRECTORY = "app/chroma_store" # Where the DB will be stored on disk
@@ -63,8 +64,8 @@ def ingest_text(text:str) -> int:
 
     # Using a LangChain Transformer (RecursiveCharacterTExtSplitter)
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=100, # max size of each chunk (~2 paragraphs)
-        chunk_overlap=15, # how much each chunk overlaps - 100 chars (helps retain context)
+        chunk_size=500, # max size of each chunk (~2 paragraphs)
+        chunk_overlap=50, # how much each chunk overlaps - 100 chars (helps retain context)
         separators=["\n\n", "\n", " ", ""] # preferred split points
         # (double new line, single newline, space, then any char )
     )
@@ -112,5 +113,27 @@ def search(query: str, k: int = 3, collection:str = COLLECTION) -> list[dict[str
         }
         for result in results
     ]
+
+# Function that uses NER (Name Entity Recognition) 
+# To identify and extract "entities" from the text in our DB 
+def extract_entities(text: str):
+
+    # Get the NER model from spacy 
+
+    ner_model = spacy.load("en_core_web_sm")
+
+    # Process the text with the NER model to extract entities 
+    doc = ner_model(text)
+
+    # Create and return a list of entities found in the text 
+    entities = [
+        {
+            "text": entity.text,
+            "label": entity.label_
+        }
+        for entity in doc.ents # for every entity found by the model
+    ]
+
+    return entities 
 
 
