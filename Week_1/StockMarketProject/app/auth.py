@@ -9,11 +9,12 @@ SECRET_KEY = "change-this-to-a-secure-random-string"  # put in env for real apps
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# use argon2 to avoid bcrypt 72-byte limitation
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 router = APIRouter()
 
-# demo users (replace with real DB)
+# regenerate demo users with the new context
 fake_users_db = {
     "alice": {"username": "alice", "hashed_password": pwd_context.hash("secret1")},
     "bob": {"username": "bob", "hashed_password": pwd_context.hash("secret2")},
@@ -22,6 +23,12 @@ fake_users_db = {
 token_blacklist = set()
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+    if plain_password is None:
+        return False
+    # defensive check: don't accidentally verify extremely long strings (helps catch bugs)
+    if isinstance(plain_password, str) and len(plain_password.encode("utf-8")) > 1024:
+        # treat this as a client error rather than blowing up inside bcrypt
+        raise HTTPException(status_code=400, detail="Password length is invalid")
     return pwd_context.verify(plain_password, hashed_password)
 
 def authenticate_user(username: str, password: str):

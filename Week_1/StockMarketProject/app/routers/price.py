@@ -9,6 +9,7 @@ from app.models.stocks_model import StockModel, StockCreateResponse
 from app.db import get_session
 from app.db_models import Price as PriceORM
 from app.db_models import Stock as StockORM
+from app.auth import get_current_user
 
 route = APIRouter(
     prefix="/price",
@@ -16,7 +17,7 @@ route = APIRouter(
 )
 
 @route.post("/", response_model=PriceCreateResponse, status_code=status.HTTP_201_CREATED)
-async def create_stock_price(stock_price: PriceModel, session: AsyncSession = Depends(get_session)):
+async def create_stock_price(stock_price: PriceModel, session: AsyncSession = Depends(get_session), user: dict = Depends(get_current_user)):
     q = await session.execute(select(PriceORM).where(PriceORM.ticker == stock_price.ticker))
     if q.scalars().first():
         raise HTTPException(status_code=400, detail="Ticker already exists")
@@ -31,7 +32,7 @@ async def create_stock_price(stock_price: PriceModel, session: AsyncSession = De
     }
 
 @route.get("/{ticker}", response_model= PriceCreateResponse)
-async def get_ticker_price(ticker = str, session: AsyncSession = Depends(get_session)):
+async def get_ticker_price(ticker = str, session: AsyncSession = Depends(get_session), user: dict = Depends(get_current_user)):
     stock_q = await session.execute(select(StockORM).where(StockORM.ticker == ticker))
     stock = stock_q.scalars().first()
 

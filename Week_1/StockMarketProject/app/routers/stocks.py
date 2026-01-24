@@ -31,7 +31,11 @@ async def create_stocks(stock: StockModel, session: AsyncSession = Depends(get_s
 async def get_all_stocks(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(StockORM))
     stocks = result.scalars().all()
-    return [StockModel.from_orm(stock) for stock in stocks]
+    return [
+        {"message": "Stock retrieved",
+         "stock": StockModel.from_orm(stock)}
+         for stock in stocks
+    ]
 
 
 @route.put("/{stock_id}", response_model=StockCreateResponse)
