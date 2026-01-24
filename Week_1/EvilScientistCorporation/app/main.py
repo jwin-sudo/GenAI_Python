@@ -7,6 +7,7 @@ from app.routers import users
 from app.routers import items
 from app.routers import chat
 from app.routers import vector_ops
+from app.routers import langgraph_ops
 
 
 
@@ -31,6 +32,7 @@ app.include_router(users.router)
 app.include_router(items.router)
 app.include_router(chat.router)
 app.include_router(vector_ops.router)
+app.include_router(langgraph_ops.router)
 
 # Generic sample endpoint (GET request that just returns a message)
 @app.get("/")
