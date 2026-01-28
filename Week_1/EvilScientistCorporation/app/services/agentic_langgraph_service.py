@@ -17,10 +17,10 @@ from typing import TypedDict, Any, Annotated
 
 from langchain_core.messages import BaseMessage
 from langchain_ollama import ChatOllama
-from langgraph.graph import add_messages
+from langgraph.graph import add_messages, StateGraph
 from langchain_core.tools import tool
-from langchain_core.messages import BaseMessage, SystemMessage, HumanMessage
-
+from langchain_core.messages import BaseMessage, SystemMessage, HumanMessage, AIMessage
+from langgraph.checkpoint.memory import MemorySaver
 from app.services.vectordb_service import search
 
 llm = ChatOllama(
@@ -112,6 +112,96 @@ def agentic_router_node(state: GraphState) -> GraphState:
 
     # Automatically set the route to the answer_with_context node 
     return {
-        "route": "answer_with_context",
+        "route": "answer",
         "docs": results
     }
+
+    # ANSWER WITH CONTEXT & GENERAL CHAT will stay the same as before :)
+    # The node that answers the user's query based on docs retrieved from either "extract" node 
+def answer_with_context_node(state: GraphState) -> GraphState:
+    # This should be a pretty comfortable pattern - just talking to the LLM 
+
+    #First, extract the query and docs from state
+    query = state.get("query", "")
+    docs = state.get("docs", [])
+    combined_docs = combined_docs = "\n\n".join(item["text"] for item in docs)
+
+    # Set up a prompt
+    prompt = (
+        f"You are an internal assistant at the Evil Scientist Corp."
+        f"You are pretty evil yourself, but still helpful."
+        f"Answer the User's query based ONLY on the extracted data below."
+        f"If the data doesn't help, say you don't know."
+        f"Extracted Data: \n{combined_docs}"
+        f"User Query: \n{query}"
+        f"Answer: "
+    )
+
+    # Invoke the LLM with the prompt
+    response = llm.invoke(prompt)
+
+    # Return the answer, which also adds it to state 
+    return {"answer": response}
+
+# Here's the fallback general chat node (invoked if no particular route is identified in the router node)
+def general_chat_node(state: GraphState) -> GraphState:
+
+    # Define the prompt 
+    prompt = (
+        f"""
+        You are an internal assistant at the Evil Scientist Corp."
+        You are pretty evil yourself, but still helpful.
+        You have context from previous interactions: \n{state.get("message_memory")}
+        Answer the User's query based ONLY on the extracted data below."
+        If the data doesn't help, say you don't know."
+        User Query: \n{state.get("query", "")}
+        Answer: """
+    )
+
+    # Storing the LLM response cuz I'm using it twice below
+    result = llm.invoke(prompt).content
+
+    # Invoke the LLM and return the response (which adds it to state too)
+    return {"answer": result,
+            "message_memory": [
+                HumanMessage(content=state.get("query", "")),
+                AIMessage(content=result)
+            ] 
+    }
+
+# THE GRAPH BUILDER -----------------------------
+# Mostly the same, but uses our new agentic router, and the tools are no longer nodes 
+def build_agentic_graph():
+
+    # Define the graph state and the builder var 
+    build = StateGraph(GraphState)
+
+    # Register each node within the graph 
+    # NOTE: extract_items and extract_plans are TOOLS now, not nodes 
+    build.add_node("router", agentic_router_node)
+    build.add_node("answer", answer_with_context_node)
+    build.add_node("chat", general_chat_node)
+
+    # Set our entry point node (the first one to invoke after a user query)
+    build.set_entrypoint("route")
+
+    # After the router runs, conditionally choose the next node based on "route" in state 
+    build.add_conditional_edges(
+        "route", # Based on the "route" state field...
+        lambda state: state["route"], # Get the route value from state
+        {
+            "answer": "answer", # If route=="answer", go to answer node
+            "chat": "chat"      # If route=="chat", go to chat node
+        }
+    )
+
+    # After answer OR chat invoke, we're done! Set that.
+    build.set_finish_point("answer")
+    build.set_finish_point("chat")
+
+    # Finally, compile and return the graph, with a Memory Checkpointer
+    return build.compile(checkpointer=MemorySaver())
+
+# Create a singleton instance of the graph for use in the router endpoint 
+
+agentic_graph = build_agentic_graph()
