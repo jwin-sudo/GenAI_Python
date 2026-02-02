@@ -1,0 +1,72 @@
+MACRO OUTLOOK — STOCK MARKET 2025
+
+1. GOLDMAN SACHS RESEARCH — GLOBAL STOCKS & VALUATIONS
+Global equities are expected to make further progress in 2025 backed by economic growth and earnings trends. However, valuations in the U.S. have reached extended levels, leaving markets *vulnerable to corrections* if economic data or earnings disappoint. Growth expectations and higher stock prices have already priced in much of the good news, particularly in the Magnificent 7 and other technology segments. High concentration and stretched valuations are cited as key risks for the equity backdrop. [oai_citation:0‡Goldman Sachs](https://www.goldmansachs.com/insights/articles/global-stocks-are-vulnerable-in-2025?utm_source=chatgpt.com)
+
+Key themes:
+- Continued equity market strength
+- Vulnerability from high valuations
+- Market concentration risk
+- Dependence on economic data and earnings surprises
+
+---
+
+2. BANK OF AMERICA GLOBAL RESEARCH — EQUITY STRENGTH AMID UNCERTAINTY
+Bank of America’s outlook calls for strong performance of U.S. equities in 2025 despite macro uncertainty. The U.S. economy is forecasted to grow above consensus, supported by productivity and fiscal policy dynamics. S&P 500 earnings are expected to accelerate, and the index could reach new highs by year-end. Rate cuts from the Federal Reserve are expected early in the year, with bond yields remaining in a tight range. Macro risks like policy shifts and global uneven responses are highlighted. [oai_citation:1‡Bank of America](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/12/bofa-global-research-expects-2025-to-be-a-year-of-further-equity.html?utm_source=chatgpt.com)
+
+Key themes:
+- S&P 500 gains driven by earnings
+- GDP growth seen above consensus
+- Rate cuts anticipated
+- Global policy uncertainty
+
+---
+
+3. MORGAN STANLEY OUTLOOK — MUTED GAINS BUT OPPORTUNITIES
+Morgan Stanley’s 2025 view suggests that after two strong years of returns, further gains in the stock market are likely but **more muted** compared with prior years. The continued adoption of technology, including AI productivity gains, is seen as a positive driver. Investors are advised to monitor overextended valuation drivers and net fund flows for signs of euphoria, especially in equities. [oai_citation:2‡Morgan Stanley](https://www.morganstanley.com/insights/articles/stock-market-outlook-2025?utm_source=chatgpt.com)
+
+Key themes:
+- Growth likely but moderated
+- AI productivity potentially underpins earnings
+- Watch for euphoria/valuation risk
+
+---
+
+4. MORGAN STANLEY MIDYEAR — U.S. ASSETS FAVORED
+A mid-year update highlighted that equities and high-quality fixed income should provide reasonable returns even as global growth slows. Investors may favor U.S. assets, with projections for the S&P 500 to climb toward elevated levels by mid-2026. A weaker U.S. dollar and commodities dynamics may be tailwinds for certain sectors, while fixed income also offers opportunities. [oai_citation:3‡Morgan Stanley](https://www.morganstanley.com/insights/articles/investment-outlook-midyear-2025?utm_source=chatgpt.com)
+
+Key themes:
+- Favor U.S. equities
+- Expected rate cuts benefit bonds
+- Dollar movements affect asset allocation
+
+---
+
+5. DWS MARKET & MACRO OUTLOOK — SLOWER ECONOMIC GROWTH
+European and U.S. economic growth in 2025 is expected to be modest. Tariffs and global trade friction could dampen consumption and investment. Inflation remains a risk, while central banks act cautiously to balance price stability with growth. More rate cuts may materialize by mid-2026, but geopolitical escalation and rising rates remain key risk factors that could weigh on capital markets. [oai_citation:4‡DWS Asset Management](https://funds.dws.com/en-be/inform/markets/market-outlook/market-and-macro/?utm_source=chatgpt.com)
+
+Key themes:
+- Slower GDP growth forecast
+- Inflation risk remains
+- Central bank caution prolonged
+- Geopolitical risk elevated
+
+---
+
+6. LSEG 2025 U.S. OUTLOOK — EARNINGS & SMALL CAPS
+LSEG’s year-ahead U.S. outlook suggests strong earnings growth of S&P 500 companies (expected double-digit growth), with small-cap stocks potentially outperforming large caps. Profit margins are expected to hold, supported by operating leverage and sales growth. Domestic revenue exposure could provide resilience against international volatility. [oai_citation:5‡LSEG](https://www.lseg.com/en/insights/data-analytics/2025-year-ahead-us-outlook-macro-equities-rmbs-cmbs-clo-insights?utm_source=chatgpt.com)
+
+Key themes:
+- Strong corporate earnings growth
+- Small caps may outperform
+- Resilient profit margins
+
+---
+
+Summary — STOCK MARKET MACRO THEMES FOR 2025
+--------------------------------------------
+• Equities likely to continue positive returns but with **valuation sensitivity** and risks of corrections. [oai_citation:6‡Goldman Sachs](https://www.goldmansachs.com/insights/articles/global-stocks-are-vulnerable-in-2025?utm_source=chatgpt.com)  
+• U.S. earnings growth is a major underpinning for markets, with forecasts of strong year-over-year corporate profit expansion. [oai_citation:7‡Bank of America](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/12/bofa-global-research-expects-2025-to-be-a-year-of-further-equity.html?utm_source=chatgpt.com)  
+• Rate cuts and accommodative policy early in the year could support asset prices, but central banks remain cautious. [oai_citation:8‡Bank of America](https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/12/bofa-global-research-expects-2025-to-be-a-year-of-further-equity.html?utm_source=chatgpt.com)  
+• Macro risks include tariff impacts, geopolitical tensions, and inflation pressures. [oai_citation:9‡DWS Asset Management](https://funds.dws.com/en-be/inform/markets/market-outlook/market-and-macro/?utm_source=chatgpt.com)  
+• Investors may favor U.S. equities over international markets, with a mix of growth and value opportunities. [oai_citation:10‡Morgan Stanley](https://www.morganstanley.com/insights/articles/investment-outlook-midyear-2025?utm_source=chatgpt.com)

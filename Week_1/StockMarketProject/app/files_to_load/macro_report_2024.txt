@@ -1,0 +1,49 @@
+2024 GLOBAL & U.S. MACRO OUTLOOK — STOCK MARKET CONTEXT
+
+1. GLOBAL ECONOMIC OUTLOOK (IMF & Morgan Stanley)
+• The International Monetary Fund projects **global GDP growth of about 3.1% in 2024 and 3.2% in 2025**, with inflation continuing to fall in most regions. Central bank policy rates remain elevated but are expected to decline gradually as inflation trends lower. Global expansion is below the long-term historical average due to high policy rates, weak productivity, and debt burdens.  [oai_citation:0‡IMF](https://www.imf.org/external/Pubs/FT/weo/2024/01/pdf/January%202024%20WEO%20Update_EN.pdf?utm_source=chatgpt.com)
+
+• Morgan Stanley economists forecast **steady global growth near ~3.1%** for 2024 and 2025. While inflation cools, central banks face a “Goldilocks dilemma” between fighting inflation and avoiding recession. Developed economies may experience soft growth, with slowing U.S. consumer spending and tighter financial conditions. The analyst outlook includes expected monetary easing mid‑to‑late 2024 after inflation normalizes.  [oai_citation:1‡Morgan Stanley](https://www.morganstanley.com/ideas/economic-outlook-mid-year-2024-steady-global-growth?utm_source=chatgpt.com)
+
+---
+
+2. U.S. MACRO & MARKET FORECAST FOR 2024
+• The U.S. economy is expected to **slow but avoid a deep recession**, with markets pricing potential Federal Reserve rate cuts beginning as early as Q2‑Q3 2024 and cumulative easing through the year. Employment and real wage growth may support consumer demand, helping sustain GDP growth above contraction levels.  [oai_citation:2‡Nasdaq](https://www.nasdaq.com/articles/2024-macro-outlook?utm_source=chatgpt.com)
+
+• Markets are watchful for **rate cut timing and magnitude**. Consensus has the first rate cut by spring 2024, potentially totaling ~150 basis points over the year; short‑term interest rates could decline toward ~4.0% by year‑end if inflation continues easing. Equity markets may benefit from a soft landing narrative, although manufacturing and services PMI data signal slowed momentum.  [oai_citation:3‡Nasdaq](https://www.nasdaq.com/articles/2024-macro-outlook?utm_source=chatgpt.com)
+
+---
+
+3. REGIONAL GROWTH TRAJECTORIES
+• The U.K. economy is forecast to face stagnation or minimal growth, with inflation falling and monetary policy easing later in 2024; consumer demand is expected to remain constrained. Eurozone growth is muted, with inflation easing and deposit rates likely to remain high until mid‑2024 before easing.  [oai_citation:4‡AXA IM](https://professional-investors.axa-im.be/investment-institute/market-views/annual-outlook/outlook-2024-global-growth-slow-bonds-geared-potentially-strong-gains?utm_source=chatgpt.com)
+
+• China’s growth is projected to moderate post‑pandemic, supported by fiscal and monetary stimulus, but may remain below potential without structural reforms. Emerging market growth prospects vary regionally, with India poised for relatively stronger expansion supported by digitalization and capital investment.  [oai_citation:5‡AXA IM](https://professional-investors.axa-im.be/investment-institute/market-views/annual-outlook/outlook-2024-global-growth-slow-bonds-geared-potentially-strong-gains?utm_source=chatgpt.com)
+
+---
+
+4. INFLATION & MONETARY POLICY
+• Core inflation across major developed economies is expected to trend lower in 2024 and toward central bank targets by late in the year. Falling inflation creates room for interest rate cuts in key markets, which could reduce cost of capital and improve investor sentiment, especially in interest‑rate‑sensitive sectors like technology and growth stocks.  [oai_citation:6‡Vanguard](https://corporate.vanguard.com/content/corporatesite/us/en/corp/articles/investment-economic-outlook-feb-2024.html?utm_source=chatgpt.com)
+
+• In Canada and other advanced markets, inflation is forecast to retreat but remain above long‑term targets in early 2024 before central banks begin easing policy late in the year. Monetary policy tightening may have lasting effects on consumer spending and housing.  [oai_citation:7‡axa-im.com](https://www.axa-im.com/investment-institute/market-views/macroeconomics/outlook-2024-global-growth-slow-bonds-geared-potentially-strong-gains?utm_source=chatgpt.com)
+
+---
+
+5. INVESTMENT & EQUITY MARKET IMPLICATIONS
+• Despite macro slowdown forecasts, stock markets in 2024 may still extend gains, driven by strong consumer spending, resilient employment, and eventual rate cuts expected by markets. Bullish commentary from institutional strategists highlights continued equity strength if markets successfully achieve a soft landing without recession.  [oai_citation:8‡Nasdaq](https://www.nasdaq.com/articles/2024-macro-outlook?utm_source=chatgpt.com)
+
+• Some analysts caution that equity performance may be uneven across sectors, with cyclicals and sectors tied to domestic demand benefiting more if growth moderates but remains positive. A soft landing with rate reductions could boost valuations in growth‑oriented stocks, although manufacturing weakness and external headwinds (trade, geopolitical risk) may temper returns.  [oai_citation:9‡Nasdaq](https://www.nasdaq.com/articles/2024-macro-outlook?utm_source=chatgpt.com)
+
+---
+
+6. MACRO RISKS & UNCERTAINTIES
+• Key uncertainties include the timing and scope of rate cuts, geopolitical tensions affecting global trade and supply chains, and policy responses to recession risks in certain economies. Higher‑for‑longer interest rates pose risks to financial conditions, while unexpected inflation resurgences could delay easing and increase market volatility.  [oai_citation:10‡Morgan Stanley](https://www.morganstanley.com/ideas/global-macro-economy-outlook-2024?utm_source=chatgpt.com)
+
+• Domestic demand fluctuations and housing market dynamics add further complexity to macro forecasts, potentially influencing equity market performance and investor risk appetite throughout 2024.  [oai_citation:11‡Vanguard](https://corporate.vanguard.com/content/corporatesite/us/en/corp/articles/investment-economic-outlook-feb-2024.html?utm_source=chatgpt.com)
+
+---
+
+SUMMARY — 2024 MACRO THEMES
+• A **soft landing scenario** with modest growth and cooling inflation is the consensus base case for 2024.  
+• **Interest rate cuts** are priced in by markets, potentially supporting asset valuations.  
+• **Global growth remains moderate**, with uneven regional performance and emergent opportunities in select markets.  
+• Investors should monitor central bank moves, consumer spending trends, and sector‑specific drivers such as technology and cyclical demand, given a slowly growing macro backdrop.

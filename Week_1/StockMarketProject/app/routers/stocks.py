@@ -2,8 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+import asyncio
+import yfinance as yf
 
 from app.models.stocks_model import StockModel, StockCreateResponse
+from app.models.quote_model import QuoteModel
 from app.db import get_session
 from app.db_models import Stock as StockORM
 
@@ -90,4 +93,55 @@ async def update_stock_sector(stock_id: int, new_sector: str, session: AsyncSess
         "message": "Stock sector updated successfully",
         "stock": StockModel.from_orm(existing_stock)
     }
+
+@route.get("/{symbol}", response_model=QuoteModel)
+async def get_stock_quote(symbol: str, session: AsyncSession = Depends(get_session)):
+    # ensure stock exists in DB
+    q = await session.execute(select(StockORM).where(StockORM.ticker == symbol))
+    stock = q.scalars().first()
+    if not stock:
+        raise HTTPException(status_code=404, detail="Stock not found")
+
+    # fetch latest intraday data from yfinance in thread (sync lib)
+    def fetch_latest(sym: str):
+        t = yf.Ticker(sym)
+        # try intraday history first
+        try:
+            hist = t.history(period="1d", interval="1m")
+            if not hist.empty:
+                last = hist.iloc[-1]
+                return {
+                    "open": float(last["Open"]),
+                    "high": float(last["High"]),
+                    "low": float(last["Low"]),
+                    "close": float(last["Close"]),
+                    "volume": int(last["Volume"]),
+                }
+        except Exception:
+            pass
+        # fallback to slower info / fast_info
+        try:
+            fi = getattr(t, "fast_info", None) or {}
+            return {
+                "open": float(fi.get("open", 0)) if fi else None,
+                "high": float(fi.get("dayHigh", 0)) if fi else None,
+                "low": float(fi.get("dayLow", 0)) if fi else None,
+                "close": float(fi.get("lastPrice", 0)) if fi else None,
+                "volume": int(fi.get("lastVolume", 0)) if fi else None,
+            }
+        except Exception:
+            return {"open": None, "high": None, "low": None, "close": None, "volume": None}
+
+    loop = asyncio.get_running_loop()
+    quote = await loop.run_in_executor(None, fetch_latest, symbol)
+
+    return QuoteModel(
+        ticker=stock.ticker,
+        company_name=getattr(stock, "company_name", None),
+        open=quote.get("open"),
+        high=quote.get("high"),
+        low=quote.get("low"),
+        close=quote.get("close"),
+        volume=quote.get("volume"),
+    )
 

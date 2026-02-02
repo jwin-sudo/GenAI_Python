@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import stocks, price
+from app.routers import stocks, price, chat, vector_ops
 from app.db import init_models
 from app.auth import router as auth_router
 
@@ -12,3 +12,5 @@ async def startup_event():
 app.include_router(stocks.route)
 app.include_router(price.route)
 app.include_router(auth_router)
+app.include_router(chat.route)
+app.include_router(vector_ops.router)
