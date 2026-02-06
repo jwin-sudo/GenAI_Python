@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap"
 import { DataDisplay } from "./DataDisplay";
 import { Chat } from "./Chat";
+import { store } from "../GlobalData/store";
 // Custom Datatype for Pokemon
 type Pokemon = {
     name: string;
@@ -55,7 +56,7 @@ export const Dashboard: React.FC = () => {
             <h1>Dashboard</h1>
             <Button onClick={getRandomPokemon}>Reshuffle Minion</Button>
 
-            <h3>Your evil minion is: {pokemon?.name}</h3>
+            <h3>Hello, {store.loggedInUser.username}. Yoyr evil minion is: {pokemon?.name}</h3>
             <img src={pokemon?.sprites.front_default}></img>
             <img src={pokemon?.sprites.back_default}></img>
 
